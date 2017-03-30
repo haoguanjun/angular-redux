@@ -4,19 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { applyMiddleware, compose, createStore } from 'redux';
-import reducers from './reducers';
+import { createEpicMiddleware } from 'redux-observable';
+import { rootReducer, rootEpic } from './reducers/root';
 import { logger, thunk } from './middleware';
 import { AppStore } from './angular-redux/app.store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
 import { CounterComponent } from './counter.component';
+import { PingpongComponent } from './pingpong.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     CounterComponent,
-    HeaderComponent
+    PingpongComponent
   ],
   imports: [
     BrowserModule,
@@ -38,12 +41,15 @@ export class AppModule {
         // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
       }) : compose;
 
+
+    let epicMiddleware = createEpicMiddleware(rootEpic);
+
     let enhancer = composeEnhancers(
-      applyMiddleware(logger, thunk)
+      applyMiddleware(epicMiddleware, logger, thunk)
     );
 
     let store = createStore(
-      reducers,
+      rootReducer,
       enhancer
     );
     appStore.setReduxStore(store);

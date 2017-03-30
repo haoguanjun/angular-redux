@@ -8,7 +8,7 @@ export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const RESET = 'RESET';
 
-function counterReducer(state: number = 0, action: Action): number {
+export function counterReducer(state: number = 0, action: Action): number {
 	switch (action.type) {
 		case INCREMENT:
 			return state + 1;
@@ -21,16 +21,9 @@ function counterReducer(state: number = 0, action: Action): number {
 	}
 }
 
-function titleReducer(state: string = "App", action: Action): string {
+export function titleReducer(state: string = "App", action: Action): string {
 	switch( action.type) {
 		default:
 			return state;
 	}
 }
-
-export default combineReducers({
-	clock: combineReducers({
-		counter: counterReducer,
-		title: titleReducer
-	})
-});
