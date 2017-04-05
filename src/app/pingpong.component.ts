@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter,ChangeDetectionStrategy } from '
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
 <h2>Is pinging: {{ isPinging }}</h2>
-<button type="button" (click)="onStartPing()">Start PING</button>
+<button type="button" (click)="onStartPing()" class="btn btn-outline-primary">Start PING</button>
   `
 })
 export class PingpongComponent  {

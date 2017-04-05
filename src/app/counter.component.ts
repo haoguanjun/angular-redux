@@ -6,10 +6,12 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
 <div>
-  <button (click)="onIncrement()">Increment</button>
-  <div>Current Count: {{ counter }}</div>
-  <button (click)="onDecrement()">Decrement</button>
-  <button (click)="onReset()">Reset Counter</button>
+  <h2>Current Count: {{ counter }}</h2>
+  <div class="btn-group" role="group">
+    <button (click)="onIncrement()" class="btn btn-outline-primary">Increment</button>
+    <button (click)="onDecrement()" class="btn btn-outline-primary">Decrement</button>
+    <button (click)="onReset()" class="btn btn-outline-danger">Reset Counter</button>
+  </div>
 </div>
   `
 })

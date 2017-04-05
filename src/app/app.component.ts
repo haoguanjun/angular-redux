@@ -8,13 +8,13 @@ import { INCREMENT, DECREMENT, RESET } from './reducers/reducers';
 @Component({
   selector: 'app-root',
   template: `
-<div>
+<div class="container">
   <appheader [title]="title | async"></appheader>
+  <hr/>
   <counter [counter]="counter | async" (increment)="onIncrement()" (decrement)="onDecrement()" (reset)="onReset()" >
   </counter>
 
   <pingpong [isPinging]="isPinging | async" (startPing)="onStartPing()" ></pingpong>
-
   `,
 })
 export class AppComponent implements OnInit, OnDestroy {

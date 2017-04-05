@@ -21,7 +21,7 @@ export function counterReducer(state: number = 0, action: Action): number {
 	}
 }
 
-export function titleReducer(state: string = "App", action: Action): string {
+export function titleReducer(state: string = "Angular Redux Sample", action: Action): string {
 	switch( action.type) {
 		default:
 			return state;
