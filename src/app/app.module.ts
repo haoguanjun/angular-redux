@@ -2,29 +2,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NgZone } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 import { applyMiddleware, compose, createStore } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { rootReducer, rootEpic } from './reducers/root';
-import { logger, thunk } from './middleware';
+import { logger, thunk } from './angular-redux/middleware';
 import { AppStore } from './angular-redux/app.store';
 
+import { AppRoutingModule } from './app.routers';
+import { CounterModule } from './counter/counter.module';
+import { TodosModule } from './todos/todos.module';
+
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header.component';
-import { CounterComponent } from './counter.component';
-import { PingpongComponent } from './pingpong.component';
+import { HelloComponent } from './hello.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    CounterComponent,
-    PingpongComponent
+    HelloComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+
+    AppRoutingModule,
+    CounterModule,
+    TodosModule
   ],
   providers: [
     AppStore
