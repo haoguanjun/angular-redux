@@ -45,7 +45,12 @@ export class AppStore {
         }
 
         this._store = store;
-        this._observable$ = new BehaviorSubject({});
+
+        // http://reactivex.io/documentation/operators/filter.html
+        // http://reactivex.io/documentation/operators/switch.html
+        // http://reactivex.io/documentation/operators/from.html
+        this._observable$ = new BehaviorSubject(this._store.getState());
+        
         this._store.subscribe(() => {
             let state = this._store.getState();
             this._observable$.next(state);
@@ -54,6 +59,8 @@ export class AppStore {
         AppStore._initialized = true;
     }
 
+    // Only when data changed, emit the new data.
+    // http://reactivex.io/documentation/operators/distinct.html
     select<S>(
         selector?: PropertySelector | PathSelector | FunctionSelector<any, S>,
         comparator?: Comparator): Observable<S> {
