@@ -1,8 +1,4 @@
-import { combineReducers } from 'redux';
-
-export interface Action {
-	readonly type: string;
-}
+import { combineReducers, Action, ActionCreator } from 'redux';
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
