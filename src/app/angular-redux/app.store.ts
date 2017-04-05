@@ -22,8 +22,9 @@ export type Comparator = (x: any, y: any) => boolean;
  */
 @Injectable()
 export class AppStore {
-    private _store: any = null;
+    // static will create a property in class object, not in instance object.
     static _initialized = false;
+    private _store: any = null;
     private _observable$: BehaviorSubject<any> = null;
 
     public get observable$(): Observable<any> {
@@ -31,12 +32,9 @@ export class AppStore {
     }
 
     constructor(private _ngZone: NgZone) {
-        console.log('AppStore constructor.');
     }
 
     setReduxStore(store: any) {
-        console.log('App Store setReduxStore.');
-
         if (!store) {
             throw new Error('store cannot be undefined. Make sure to pass the redux store as the only argument of the constructor.');
         }
@@ -49,6 +47,7 @@ export class AppStore {
         // http://reactivex.io/documentation/operators/filter.html
         // http://reactivex.io/documentation/operators/switch.html
         // http://reactivex.io/documentation/operators/from.html
+        // https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/of.md
         this._observable$ = new BehaviorSubject(this._store.getState());
         
         this._store.subscribe(() => {
