@@ -7,8 +7,10 @@ import { Todo } from './todo';
     selector: 'addTodo',
     template: `
 <div>
-    <input type="text" [(ngModel)]="value" />
-    <button type="button" (click)="onClick()" class="btn btn-outline-primary">Add</button>
+    <form class="form-inline">
+        <input type="text" name="new" [(ngModel)]="value" class="form-control" />
+        <button type="button" (click)="onClick()" class="btn btn-outline-primary">Add</button>
+    </form>
 </div>
   `,
 })

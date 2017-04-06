@@ -1,8 +1,6 @@
-import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule }     from '@angular/core';
 
-import { AppComponent } from './app.component';
 import { HelloComponent } from './hello.component';
 import { CounterMainComponent } from './counter/counter.main.component';
 import { TodosMainComponent } from './todos/todos.main.component';

@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'hello',
   template: `
-<p>Hello, Redux!</p>
+<div class="container">
+  <p>Hello, Redux!</p>
+</div>
   `,
 })
 export class HelloComponent {

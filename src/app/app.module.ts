@@ -27,8 +27,8 @@ import { HelloComponent } from './hello.component';
     HttpModule,
     NgReduxModule,
     StoreModule,
-
     AppRoutingModule,
+    
     CounterModule,
     TodosModule
   ],
