@@ -6,8 +6,8 @@ import { Todo } from './todo';
 @Component({
     selector: 'todolist',
     template: `
-<ul>
-    <li *ngFor="let item of todos; let i = index;" (click)="onclick(i)">
+<ul class="list-group">
+    <li *ngFor="let item of todos; let i = index;" (click)="onclick(i)" class="list-group-item" [class.disabled]="item.completed" >
         {{ item.text }} - {{ item.completed? "v" : "x" }}
     </li>
 </ul>
