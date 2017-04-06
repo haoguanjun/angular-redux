@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NgRedux } from '@angular-redux/store';
 
-import { AppStore } from '../angular-redux/app.store';
 import { Todo } from './todo';
 
 @Component({
@@ -16,7 +16,7 @@ import { Todo } from './todo';
 export class TodosMainComponent {
     private newTodoText: Observable<string>;
     private todos: Observable<Array<Todo>>;
-    constructor(private _store: AppStore) {
+    constructor(private _store: NgRedux<any>) {
         this.newTodoText = Observable.of("no name to do item");
         this.todos = this._store.select(["todos"]);
     }

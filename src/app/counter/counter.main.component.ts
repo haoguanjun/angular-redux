@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
 
 import { CounterComponent } from './counter.component';
 import { AppStore } from '../angular-redux/app.store';
@@ -22,7 +23,7 @@ export class CounterMainComponent implements OnInit, OnDestroy {
   private counter: Observable<number>;
   private isPinging: Observable<boolean>;
 
-  constructor(private _store: AppStore) {
+  constructor(private _store: NgRedux<any>) {
   }
 
   ngOnInit() {

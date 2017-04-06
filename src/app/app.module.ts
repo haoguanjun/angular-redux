@@ -7,8 +7,8 @@ import { RouterModule } from '@angular/router';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { rootReducer, rootEpic } from './reducers/root';
-import { logger, thunk } from './angular-redux/middleware';
-import { AppStore } from './angular-redux/app.store';
+import { logger, thunk } from './middleware';
+import { NgReduxModule, NgRedux } from '@angular-redux/store';
 
 import { AppRoutingModule } from './app.routers';
 import { CounterModule } from './counter/counter.module';
@@ -26,18 +26,18 @@ import { HelloComponent } from './hello.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    NgReduxModule,
 
     AppRoutingModule,
     CounterModule,
     TodosModule
   ],
   providers: [
-    AppStore
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private appStore: AppStore) {
+  constructor(private ngRedux: NgRedux<any>) {
     console.log('AppModule constructor.');
 
     let __redux_devtools_extension_compose__ = window["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"];
@@ -57,6 +57,7 @@ export class AppModule {
       rootReducer,
       enhancer
     );
-    appStore.setReduxStore(store);
+
+    this.ngRedux.provideStore(store);
   }
 }
