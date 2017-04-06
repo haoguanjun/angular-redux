@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
 
 import { CounterComponent } from './counter.component';
-import { AppStore } from '../angular-redux/app.store';
 import { INCREMENT, DECREMENT, RESET } from './reducers/reducers';
 
 @Component({

@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@ang
 import { Observable } from 'rxjs';
 
 import { Input, Output, EventEmitter } from '@angular/core';
-import { AppStore } from '../angular-redux/app.store';
 import { Todo } from './todo';
 @Component({
     selector: 'todolist',

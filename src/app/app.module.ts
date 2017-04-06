@@ -6,9 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { applyMiddleware, compose, createStore } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
-import { rootReducer, rootEpic } from './reducers/root';
-import { logger, thunk } from './middleware';
 import { NgReduxModule, NgRedux } from '@angular-redux/store';
+import { StoreModule } from './store/store.module';
 
 import { AppRoutingModule } from './app.routers';
 import { CounterModule } from './counter/counter.module';
@@ -27,6 +26,7 @@ import { HelloComponent } from './hello.component';
     FormsModule,
     HttpModule,
     NgReduxModule,
+    StoreModule,
 
     AppRoutingModule,
     CounterModule,
@@ -37,27 +37,4 @@ import { HelloComponent } from './hello.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private ngRedux: NgRedux<any>) {
-    console.log('AppModule constructor.');
-
-    let __redux_devtools_extension_compose__ = window["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"];
-    let composeEnhancers = typeof window === 'object' && __redux_devtools_extension_compose__ ?
-      __redux_devtools_extension_compose__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      }) : compose;
-
-
-    let epicMiddleware = createEpicMiddleware(rootEpic);
-
-    let enhancer = composeEnhancers(
-      applyMiddleware(epicMiddleware, logger, thunk)
-    );
-
-    let store = createStore(
-      rootReducer,
-      enhancer
-    );
-
-    this.ngRedux.provideStore(store);
-  }
 }
