@@ -1,23 +1,31 @@
 import { Component, OnInit, OnDestroy, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import { Input, Output, EventEmitter } from '@angular/core';
+
 import { Todo } from './todo';
 @Component({
     selector: 'addTodo',
     template: `
 <div>
-    <form class="form-inline">
-        <input type="text" name="new" [(ngModel)]="value" class="form-control" />
-        <button type="button" (click)="onClick()" class="btn btn-outline-primary">Add</button>
+    <form (ngSubmit)="onSubmit(myForm)" #myForm="ngForm" class="form-inline">
+        <input type="text" name="taskName" [ngModel]="value" class="form-control" />
+        <button type="submit" class="btn btn-outline-primary">Add</button>
     </form>
 </div>
   `,
 })
-export class AddTodoComponent {
+export class AddTodoComponent implements OnInit {
+    @ViewChild(NgForm) myForm: NgForm;
     @Input() value: string;
     @Output() addClick: EventEmitter<any> = new EventEmitter<any>();
-    onClick() {
-        this.addClick.emit( this.value );
+
+    ngOnInit(){
+        console.log( this.myForm);
+    }
+
+    onSubmit(f: NgForm) {
+        this.addClick.emit( f.value.taskName );
     }
 }

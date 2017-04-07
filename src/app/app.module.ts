@@ -10,6 +10,8 @@ import { NgReduxModule, NgRedux } from '@angular-redux/store';
 import { StoreModule } from './store/store.module';
 
 import { AppRoutingModule } from './app.routers';
+import { DynamicModule } from './dynamic.components/dynamic.module';
+import { GridModule } from './library/grid.module';
 import { CounterModule } from './counter/counter.module';
 import { TodosModule } from './todos/todos.module';
 
@@ -29,6 +31,8 @@ import { HelloComponent } from './hello.component';
     StoreModule,
     AppRoutingModule,
     
+    GridModule,
+    DynamicModule,
     CounterModule,
     TodosModule
   ],
